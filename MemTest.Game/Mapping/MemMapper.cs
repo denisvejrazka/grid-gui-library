@@ -1,6 +1,6 @@
 using System;
 using gLibrary.Mapping;
-using gLibrary.Models;
+using gLibrary.core.Engine.Models;
 
 namespace MemTest.Game.Mapping;
 

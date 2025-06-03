@@ -7,7 +7,7 @@ using gLibrary.Rendering;
 
 namespace MemTest.Game
 {
-    public class MemTest
+    public class MemTestLogic
     {
         private readonly GridEngine _engine;
         private readonly IMap _mapper;
@@ -22,7 +22,7 @@ namespace MemTest.Game
         private int _currentStep = 0;
         private bool _isPlayerTurn = false;
 
-        public MemTest(
+        public MemTestLogic(
             GridEngine engine,
             IMap mapper,
             SquareHelper helper,
@@ -38,26 +38,21 @@ namespace MemTest.Game
 
         public void Initialize()
         {
-            // Vynulovat matici
             for (int i = 0; i < _engine.Rows; i++)
                 for (int j = 0; j < _engine.Columns; j++)
                     _engine.SetCellValue(i, j, 0);
 
-            // Vyčistit renderer (Canvas v Avalonii)
             _renderer.Clear();
 
-            // Vykreslit úplně poprvé celou mřížku (bílé buňky apod.)
             var gridRenderer = new SquareRenderer(_renderer, _engine, _mapper, _helper, _cellSize);
             gridRenderer.RenderGrid();
 
-            // Reset skóre a posloupnost
             _score = 0;
             _sequence.Clear();
             _playerInput.Clear();
             _currentStep = 0;
             _isPlayerTurn = false;
 
-            // Začít hru
             StartGame();
         }
 
@@ -69,9 +64,6 @@ namespace MemTest.Game
             _ = ShowSequenceAsync();
         }
 
-        /// <summary>
-        /// Ošetří kliknutí hráče (zavolá ho Avalonia renderer přes CellClicked event).
-        /// </summary>
         public async void HandleCellClick(object? sender, CellClickEventArgs args)
         {
             if (!_isPlayerTurn)
