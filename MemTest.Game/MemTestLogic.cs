@@ -11,7 +11,7 @@ namespace MemTest.Game
     {
         private readonly GridEngine _engine;
         private readonly IMap _mapper;
-        private readonly SquareHelper _helper;
+        private readonly BaseHelper _helper;
         private readonly IRenderer _renderer;
         private readonly int _cellSize;
 

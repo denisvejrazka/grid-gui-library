@@ -8,8 +8,6 @@ using gLibrary.Events;
 using gLibrary.Helping;
 using gLibrary.Mapping;
 using gLibrary.core.Engine.Models;
-using System;
-using System.Linq;
 using gLibrary.core.Rendering;
 
 namespace gLibrary.Rendering.AvaloniaRenderers;
