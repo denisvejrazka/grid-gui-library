@@ -9,7 +9,7 @@ using gLibrary.Mapping;
 
 namespace TicTacToe.Game
 {
-    public class TicTacToe
+    public class TicTacToeLogic
     {
         private readonly GridEngine _engine;
         private readonly Player _player1;
@@ -18,7 +18,7 @@ namespace TicTacToe.Game
         private int _movesMade;
         private bool _gameOver;
         private readonly IMap _mapper;
-        private readonly Helper _helper;
+        private readonly BaseHelper _helper;
         private readonly IRenderer _renderer;
         private readonly SquareRenderer _squareRenderer;
         private readonly GameStateManager _gameStateManager;
@@ -27,7 +27,7 @@ namespace TicTacToe.Game
 
         public event Action<int, int>? RemoteMoveArrived;
 
-        public TicTacToe(int rows, int cols, int cellSize, IRenderer renderer)
+        public TicTacToeLogic(int rows, int cols, int cellSize, IRenderer renderer)
         {
             _cellSize = cellSize;
             _engine = new GridEngine(rows, cols);

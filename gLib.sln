@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tri.Game", "Tri.Game\Tri.Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemTest.Views", "MemTest.Views\MemTest.Views.csproj", "{CA6DECE2-FD09-4E01-906C-E0938B2C56F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Views", "TicTacToe.Views\TicTacToe.Views.csproj", "{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{CA6DECE2-FD09-4E01-906C-E0938B2C56F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA6DECE2-FD09-4E01-906C-E0938B2C56F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA6DECE2-FD09-4E01-906C-E0938B2C56F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
