@@ -1,6 +1,6 @@
 using Avalonia.Controls;
-using gLibrary.Engine;
-using gLibrary.Helping;
+using gLibrary.Core.Engine;
+using gLibrary.Core.Helping;
 using gLibrary.Rendering.AvaloniaRenderers;
 using MemTest.Game.Mapping;
 using MemTest.Game;

@@ -3,14 +3,14 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Platform;
-using gLibrary.Engine;
-using gLibrary.Events;
-using gLibrary.Helping;
-using gLibrary.Mapping;
-using gLibrary.core.Engine.Models;
-using gLibrary.core.Rendering;
+using gLibrary.Core.Engine;
+using gLibrary.Core.Rendering;
+using gLibrary.Core.Engine.Models;
+using gLibrary.Core.Helping;
+using gLibrary.Core.Mapping;
+using gLibrary.Core.Events;
 
-namespace gLibrary.Rendering.AvaloniaRenderers;
+namespace gLibrary.Rendering.Avalonia;
 
 // add UpdateCell(int row, int col)
 public class AvaloniaHexagonRenderer : Control, IRenderer

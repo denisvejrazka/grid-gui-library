@@ -1,5 +1,5 @@
-﻿using gLibrary.core.Engine.Models;
-using gLibrary.Mapping;
+﻿using gLibrary.Core.Engine.Models;
+using gLibrary.Core.Mapping;
 
 namespace TicTacToe.Game.Mapping
 {

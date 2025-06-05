@@ -1,9 +1,8 @@
-﻿using gLibrary.core.Rendering;
-using gLibrary.Engine;
-using gLibrary.Events;
-using gLibrary.Helping;
-using gLibrary.Mapping;
-using gLibrary.Rendering;
+﻿using gLibrary.Core.Rendering;
+using gLibrary.Core.Engine;
+using gLibrary.Core.Events;
+using gLibrary.Core.Helping;
+using gLibrary.Core.Mapping;
 
 namespace MemTest.Game
 {

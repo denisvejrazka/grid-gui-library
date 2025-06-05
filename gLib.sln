@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gLibrary.Core", "..\gLibrary.core\gLibrary.Core.csproj", "{50E0B69D-72ED-79CF-B34D-06D012430A2E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gLibrary.Rendering.Avalonia", "gLibrary.Rendering.Avalonia\gLibrary.Rendering.Avalonia.csproj", "{A5EA7DE0-80CB-443B-A875-A5B2D0D86266}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemTest.Game", "MemTest.Game\MemTest.Game.csproj", "{14574A52-EB54-4A5C-A228-51F23816F6D1}"
@@ -17,16 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemTest.Views", "MemTest.Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Views", "TicTacToe.Views\TicTacToe.Views.csproj", "{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gLibrary.Core", "gLibrary.Core\gLibrary.Core.csproj", "{CF7D6BF6-31F9-A115-3218-4CC3ED477070}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{50E0B69D-72ED-79CF-B34D-06D012430A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50E0B69D-72ED-79CF-B34D-06D012430A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50E0B69D-72ED-79CF-B34D-06D012430A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50E0B69D-72ED-79CF-B34D-06D012430A2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5EA7DE0-80CB-443B-A875-A5B2D0D86266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5EA7DE0-80CB-443B-A875-A5B2D0D86266}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5EA7DE0-80CB-443B-A875-A5B2D0D86266}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3EB338A-875C-452B-BC5B-7B1603A9EAF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF7D6BF6-31F9-A115-3218-4CC3ED477070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF7D6BF6-31F9-A115-3218-4CC3ED477070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF7D6BF6-31F9-A115-3218-4CC3ED477070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF7D6BF6-31F9-A115-3218-4CC3ED477070}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,10 @@
-﻿using gLibrary.Engine;
-using gLibrary.Helping;
-using gLibrary.Rendering;
+﻿using gLibrary.Core.Engine;
+using gLibrary.Core.Helping;
+using gLibrary.Core.Rendering;
 using gLibrary.Core.Saving;
 using gLibrary.Core.Communication;
 using TicTacToe.Game.Mapping;
-using gLibrary.core.Rendering;
-using gLibrary.Mapping;
+using gLibrary.Core.Mapping;
 
 namespace TicTacToe.Game
 {

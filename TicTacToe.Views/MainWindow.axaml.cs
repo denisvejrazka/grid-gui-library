@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Threading;
-using gLibrary.Rendering.AvaloniaRenderers;
+using gLibrary.Rendering.Avalonia;
 using System;
 using TicTacToe.Game;
 
