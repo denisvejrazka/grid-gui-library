@@ -1,7 +1,10 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Layout;
 using Avalonia.Platform;
 using gLibrary.Core.Engine;
 using gLibrary.Core.Rendering;
@@ -11,7 +14,7 @@ using gLibrary.Core.Mapping;
 using gLibrary.Core.Events;
 
 
-namespace gLibrary.Rendering.Avalonia;
+namespace gLibrary.Rendering.Ava;
 
 // add UpdateCell(int row, int col)
 public class AvaloniaTriangleRenderer : Control, IRenderer
@@ -45,21 +48,21 @@ public class AvaloniaTriangleRenderer : Control, IRenderer
 
     public void RenderCell(int row, int col, Cell cell, int cellSize, (double x, double y) position)
     {
-        var points = new List<Avalonia.Point>();
+        var points = new List<Point>();
         double height = Math.Sqrt(3) / 2 * cellSize;
         bool isUpward = (row + col) % 2 == 0;
 
         if (isUpward)
         {
-            points.Add(new Avalonia.Point(0, height));
-            points.Add(new Avalonia.Point(cellSize / 2, 0));
-            points.Add(new Avalonia.Point(cellSize, height));
+            points.Add(new Point(0, height));
+            points.Add(new Point(cellSize / 2, 0));
+            points.Add(new Point(cellSize, height));
         }
         else
         {
-            points.Add(new Avalonia.Point(0, 0));
-            points.Add(new Avalonia.Point(cellSize, 0));
-            points.Add(new Avalonia.Point(cellSize / 2, height));
+            points.Add(new Point(0, 0));
+            points.Add(new Point(cellSize, 0));
+            points.Add(new Point(cellSize / 2, height));
         }
 
         var triangle = new Polygon
@@ -78,7 +81,7 @@ public class AvaloniaTriangleRenderer : Control, IRenderer
             var uri = new Uri(cell.Raster);
             var bitmapImage = new Image
             {
-                Source = new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(uri)),
+                Source = new Bitmap(AssetLoader.Open(uri)),
                 Width = cellSize,
                 Height = cellSize,
             };
@@ -90,8 +93,8 @@ public class AvaloniaTriangleRenderer : Control, IRenderer
             Text = cell.Text,
             Foreground = Brushes.Black,
             FontSize = cellSize * 0.4,
-            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
         };
 
         panel.Children.Add(textBlock);

@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\gLibrary.Rendering.Avalonia\gLibrary.Rendering.Avalonia.csproj" />
+    <ProjectReference Include="../gLibrary.Rendering.Avalonia/gLibrary.Rendering.Ava.csproj" />
     <ProjectReference Include="..\MemTest.Game\MemTest.Game.csproj" />
   </ItemGroup>
 </Project>

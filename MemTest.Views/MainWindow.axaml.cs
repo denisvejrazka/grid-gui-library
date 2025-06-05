@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using gLibrary.Core.Engine;
 using gLibrary.Core.Helping;
-using gLibrary.Rendering.AvaloniaRenderers;
+using gLibrary.Rendering.Ava;
 using MemTest.Game.Mapping;
 using MemTest.Game;
 namespace MemTest.Views

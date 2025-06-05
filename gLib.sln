@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gLibrary.Rendering.Avalonia", "gLibrary.Rendering.Avalonia\gLibrary.Rendering.Avalonia.csproj", "{A5EA7DE0-80CB-443B-A875-A5B2D0D86266}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gLibrary.Rendering.Ava", "gLibrary.Rendering.Avalonia\gLibrary.Rendering.Ava.csproj", "{A5EA7DE0-80CB-443B-A875-A5B2D0D86266}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemTest.Game", "MemTest.Game\MemTest.Game.csproj", "{14574A52-EB54-4A5C-A228-51F23816F6D1}"
 EndProject

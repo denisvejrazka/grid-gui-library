@@ -1,7 +1,10 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Layout;
 using Avalonia.Platform;
 using gLibrary.Core.Engine;
 using gLibrary.Core.Rendering;
@@ -10,7 +13,7 @@ using gLibrary.Core.Helping;
 using gLibrary.Core.Mapping;
 using gLibrary.Core.Events;
 
-namespace gLibrary.Rendering.Avalonia;
+namespace gLibrary.Rendering.Ava;
 
 // add UpdateCell(int row, int col)
 public class AvaloniaHexagonRenderer : Control, IRenderer
@@ -42,14 +45,14 @@ public class AvaloniaHexagonRenderer : Control, IRenderer
     {
         double width = cellSize * 1.5;
         double height = Math.Sqrt(3) * cellSize / 2;
-        var points = new List<Avalonia.Point>
+        var points = new List<Point>
         {
-            new Avalonia.Point(cellSize * 0.5, 0),
-            new Avalonia.Point(cellSize * 1.5, 0),
-            new Avalonia.Point(cellSize * 2, height),
-            new Avalonia.Point(cellSize * 1.5, height * 2),
-            new Avalonia.Point(cellSize * 0.5, height * 2),
-            new Avalonia.Point(0, height)
+            new Point(cellSize * 0.5, 0),
+            new Point(cellSize * 1.5, 0),
+            new Point(cellSize * 2, height),
+            new Point(cellSize * 1.5, height * 2),
+            new Point(cellSize * 0.5, height * 2),
+            new Point(0, height)
         };
 
         var hexagon = new Polygon
@@ -68,7 +71,7 @@ public class AvaloniaHexagonRenderer : Control, IRenderer
             var uri = new Uri(cell.Raster);
             var bitmapImage = new Image
             {
-                Source = new Avalonia.Media.Imaging.Bitmap(AssetLoader.Open(uri)),
+                Source = new Bitmap(AssetLoader.Open(uri)),
                 Width = cellSize,
                 Height = cellSize,
             };
@@ -80,8 +83,8 @@ public class AvaloniaHexagonRenderer : Control, IRenderer
             Text = cell.Text,
             Foreground = Brushes.Black,
             FontSize = cellSize * 0.4,
-            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
         };
 
         panel.Children.Add(textBlock);

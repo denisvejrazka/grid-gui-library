@@ -5,14 +5,11 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TicTacToe.Views.MainWindow"
         Title="TicTacToe.Views">
-    <DockPanel>
-    <!-- Horní panel s tlačítky Save a Load -->
-    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="10">
-      <Button x:Name="SaveButton" Content="Save" Margin="0,0,10,0" />
-      <Button x:Name="LoadButton" Content="Load" />
-    </StackPanel>
-
-    <!-- Zbytek okna - Canvas, na který budeme kreslit mřížku -->
-    <Canvas x:Name="TicTacToeBackground" Background="White" />
-  </DockPanel>
+    <Border Padding="20">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                <Canvas x:Name="TicTacToeBackground" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Button Content="Save Game" Click="SaveButton_Click"/>
+                <Button Content="Load Game" Click="LoadButton_Click"/>
+            </StackPanel>
+    </Border>
 </Window>

@@ -4,7 +4,7 @@ namespace gLibrary.Core.Saving
 {
     public class GameStateManager
     {
-        private const string DefaultSavePath = "Saves/saved_game.json";
+        private const string DefaultSavePath = "../saved_game.json";
 
         public void SaveGame(GridState state, string? filePath = null)
         {
