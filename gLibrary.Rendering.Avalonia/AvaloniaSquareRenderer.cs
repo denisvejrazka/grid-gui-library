@@ -92,9 +92,9 @@ public class AvaloniaSquareRenderer : Control, IRenderer
 
     public void UpdateCell(int row, int col)
     {
-        var value = _engine.GetCellValue(row, col);
+        int value = _engine.GetCellValue(row, col);
 
-        var cell = _mapper.GetMap(value, row, col);
+        Cell cell = _mapper.GetMap(value, row, col);
 
         var position = _squareHelper.GetPosition(row, col, _cellSize);
 

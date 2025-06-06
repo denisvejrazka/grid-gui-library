@@ -4,6 +4,7 @@ using gLibrary.Core.Helping;
 using gLibrary.Rendering.Ava;
 using MemTest.Game.Mapping;
 using MemTest.Game;
+using gLibrary.Core.Mapping;
 namespace MemTest.Views
 {
     public partial class MainWindow : Window
@@ -14,11 +15,11 @@ namespace MemTest.Views
         public MainWindow()
         {
             InitializeComponent();
-            var engine = new GridEngine(3, 3);
+            GridEngine engine = new GridEngine(3, 3);
             engine.GenerateGrid();
-            var mapper = new MemMapper();
-            var helper = new SquareHelper(engine);
-            var avaloniaRenderer = new AvaloniaSquareRenderer(MemBackground, engine, mapper, helper, CellSize);
+            IMap mapper = new MemMapper();
+            SquareHelper helper = new SquareHelper(engine);
+            AvaloniaSquareRenderer avaloniaRenderer = new AvaloniaSquareRenderer(MemBackground, engine, mapper, helper, CellSize);
             _game = new MemTestLogic(engine, mapper, helper, avaloniaRenderer, CellSize);
             avaloniaRenderer.CellClicked += _game.HandleCellClick;
             _game.Initialize();

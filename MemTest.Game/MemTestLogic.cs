@@ -3,7 +3,9 @@ using gLibrary.Core.Engine;
 using gLibrary.Core.Events;
 using gLibrary.Core.Helping;
 using gLibrary.Core.Mapping;
+using System.Threading.Tasks;
 
+// TODO: start game btn or repeat sequence or longer delay
 namespace MemTest.Game
 {
     public class MemTestLogic
@@ -43,7 +45,7 @@ namespace MemTest.Game
 
             _renderer.Clear();
 
-            var gridRenderer = new SquareRenderer(_renderer, _engine, _mapper, _helper, _cellSize);
+            SquareRenderer gridRenderer = new SquareRenderer(_renderer, _engine, _mapper, _helper, _cellSize);
             gridRenderer.RenderGrid();
 
             _score = 0;
@@ -113,7 +115,7 @@ namespace MemTest.Game
             _isPlayerTurn = true;
         }
 
-        private void AddRandomCellToSequence()
+        private async Task AddRandomCellToSequence()
         {
             int row = _random.Next(0, _engine.Rows);
             int col = _random.Next(0, _engine.Columns);

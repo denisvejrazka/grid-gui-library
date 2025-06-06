@@ -1,6 +1,7 @@
 ﻿using gLibrary.Core.Engine;
 using gLibrary.Core.Mapping;
 using gLibrary.Core.Helping;
+using gLibrary.Core.Engine.Models;
 
 namespace gLibrary.Core.Rendering
 {
@@ -28,8 +29,8 @@ namespace gLibrary.Core.Rendering
             {
                 for (int col = 0; col < _engine.Columns; col++)
                 {
-                    var value = _engine.GetCellValue(row, col);
-                    var cell = _mapper.GetMap(value, row, col);
+                    int value = _engine.GetCellValue(row, col);
+                    Cell cell = _mapper.GetMap(value, row, col);
                     var position = _helper.GetPosition(row, col, _cellSize);
                     _renderer.RenderCell(row, col, cell, _cellSize, position);
                 }

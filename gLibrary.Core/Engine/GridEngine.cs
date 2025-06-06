@@ -38,12 +38,8 @@ namespace gLibrary.Core.Engine
         {
             var copy = new int[Rows, Columns];
             for (int i = 0; i < Rows; i++)
-            {
                 for (int j = 0; j < Columns; j++)
-                {
                     copy[i, j] = GetCellValue(i, j);
-                }
-            }
             return copy;
         }
 
@@ -53,12 +49,8 @@ namespace gLibrary.Core.Engine
                 throw new ArgumentException("Grid size does not match.");
 
             for (int i = 0; i < Rows; i++)
-            {
                 for (int j = 0; j < Columns; j++)
-                {
                     SetCellValue(i, j, newGrid[i, j]);
-                }
-            }
         }
     }
 }

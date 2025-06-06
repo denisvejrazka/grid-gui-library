@@ -76,8 +76,8 @@ namespace TicTacToe.Game
         // Saving
         public GridState ToGameState()
         {
-            var grid = _engine.ExportGrid();
-            var list = new List<List<int>>();
+            int[,] grid = _engine.ExportGrid();
+            List<List<int>> list = new List<List<int>>();
 
             for (int i = 0; i < grid.GetLength(0); i++)
             {
@@ -94,17 +94,13 @@ namespace TicTacToe.Game
 
         public void FromGameState(GridState state)
         {
-            var rows = state.GridValues.Count;
-            var cols = state.GridValues[0].Count;
-            var newGrid = new int[rows, cols];
+            int rows = state.GridValues.Count;
+            int cols = state.GridValues[0].Count;
+            int[,] newGrid = new int[rows, cols];
 
             for (int i = 0; i < rows; i++)
-            {
                 for (int j = 0; j < cols; j++)
-                {
                     newGrid[i, j] = state.GridValues[i][j];
-                }
-            }
 
             _engine.SetGrid(newGrid);
 

@@ -33,7 +33,7 @@ namespace Tri.Game
         public List<(int row, int col)> HandleClick(int row, int col, out List<(int row, int col, int newValue)> changedCells)
         {
             changedCells = new();
-            var affected = new List<(int, int)>();
+            List<(int, int)> affected = new List<(int, int)>();
 
             if (IsGameOver) return affected;
 
@@ -71,9 +71,9 @@ namespace Tri.Game
 
         private List<(int row, int col, int newValue)> GenerateNeighborValues(int row, int col)
         {
-            var updated = new List<(int, int, int)>();
+            List<(int, int, int)> updated = new List<(int, int, int)>();
 
-            var neighbors = _helper.GetNeighbors(row, col)
+            List<(int, int)> neighbors = _helper.GetNeighbors(row, col)
                 .Where(n => !_blacklist.Contains(n) && _engine.GetCellValue(n.Item1, n.Item2) == 0)
                 .ToList();
 

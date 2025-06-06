@@ -73,13 +73,13 @@ namespace TicTacToe.Views
 
             public void SaveGame()
             {
-                var state = _TicTacToeLogic.ToGameState();
+                GridState state = _TicTacToeLogic.ToGameState();
                 _gameStateManager.SaveGame(state, "gLibrary.Core/Saving/tictactoe_save.json");
             }
 
             public void LoadGame()
             {
-                var state = _gameStateManager.LoadGame("gLibrary.Core/Saving/tictactoe_save.json");
+                GridState state = _gameStateManager.LoadGame("gLibrary.Core/Saving/tictactoe_save.json");
                 if (state != null)
                 {
                     _TicTacToeLogic.FromGameState(state);

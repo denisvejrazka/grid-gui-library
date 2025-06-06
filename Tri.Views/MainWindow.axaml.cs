@@ -17,11 +17,11 @@ public partial class MainWindow : Window
             InitializeComponent();
 
             const int size = 50;
-            var engine = new GridEngine(5, 5);
+            GridEngine engine = new GridEngine(5, 5);
             engine.GenerateGrid();
 
-            var mapper = new TriMapper();
-            var helper = new TriangleHelper(engine);
+            TriMapper mapper = new TriMapper();
+            TriangleHelper helper = new TriangleHelper(engine);
             _renderer = new AvaloniaTriangleRenderer(TriBackground, engine, mapper, helper, size, OnClick);
 
             TriBackground.Width = engine.Columns * size;
@@ -32,7 +32,7 @@ public partial class MainWindow : Window
             _logic = new TriLogic(engine, helper);
             _logic.InitializeGrid();
 
-            var triangleRenderer = new TriangleRenderer(_renderer, engine, mapper, helper, size);
+            TriangleRenderer triangleRenderer = new TriangleRenderer(_renderer, engine, mapper, helper, size);
             triangleRenderer.RenderGrid();
         }
 
