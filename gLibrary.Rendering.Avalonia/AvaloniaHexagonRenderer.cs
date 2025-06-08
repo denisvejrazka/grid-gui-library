@@ -19,7 +19,7 @@ namespace gLibrary.Rendering.Ava;
 public class AvaloniaHexagonRenderer : Control, IRenderer
 {
     private readonly Canvas _canvas;
-    private HexagonHelper _squareHelper;
+    private HexagonHelper _hexagonHelper;
     private GridEngine _engine;
     private int _cellSize;
     private IMap _mapper;
@@ -111,7 +111,7 @@ public class AvaloniaHexagonRenderer : Control, IRenderer
     private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         var point = e.GetPosition(_canvas);
-        var cellCoords = _squareHelper.GetCellCoordinatesFromPixel(point.X, point.Y, _cellSize);
+        var cellCoords = _hexagonHelper.GetCellCoordinatesFromPixel(point.X, point.Y, _cellSize);
         Cell cell = _mapper.GetMap(
             _engine.GetCellValue(cellCoords.Value.row, cellCoords.Value.col),
             cellCoords.Value.row,
@@ -134,7 +134,7 @@ public class AvaloniaHexagonRenderer : Control, IRenderer
     //private void OnPointerMoved(object? sender, PointerEventArgs e)
     //{
     //    var point = e.GetPosition(_canvas);
-    //    var cellCoords = _squareHelper.GetCellCoordinatesFromPixel(point.X, point.Y, _cellSize);
+    //    var cellCoords = _hexagonHelper.GetCellCoordinatesFromPixel(point.X, point.Y, _cellSize);
     //    Cell cell = _mapper.GetMap(_engine.GetCellValue(cellCoords.Value.row, cellCoords.Value.col), cellCoords.Value.row, cellCoords.Value.col);
 
     //    if (cell != null)

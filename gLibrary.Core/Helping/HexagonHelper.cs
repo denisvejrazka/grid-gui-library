@@ -35,7 +35,7 @@ namespace gLibrary.Core.Helping
 
         public override List<(int row, int col)> GetNeighbors(int row, int col)
         {
-            var neighbors = new List<(int, int)>();
+            List<(int, int)> neighbors = new List<(int, int)>();
 
             var directions = (col % 2 == 0) 
             ? new (int, int)[] { 
