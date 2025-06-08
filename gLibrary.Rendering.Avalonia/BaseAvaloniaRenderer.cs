@@ -33,7 +33,7 @@ namespace gLibrary.Rendering.Ava
             _canvas = canvas;
             //events
             _canvas.PointerPressed += OnPointerPressed;
-            //_canvas.PointerEntered += OnPointerMoved;
+            _canvas.PointerEntered += OnPointerMoved;
             CellClicked = OnClick;
             CellHovered = OnHover;
             _engine = engine;
@@ -86,16 +86,24 @@ namespace gLibrary.Rendering.Ava
             }
         }
 
-        //private void OnPointerMoved(object? sender, PointerEventArgs e)
-        //{
-        //    var point = e.GetPosition(_canvas);
-        //    var cellCoords = _squareHelper.GetCellCoordinatesFromPixel(point.X, point.Y, _cellSize);
-        //    Cell cell = _mapper.GetMap(_engine.GetCellValue(cellCoords.Value.row, cellCoords.Value.col), cellCoords.Value.row, cellCoords.Value.col);
+        private void OnPointerMoved(object? sender, PointerEventArgs e)
+        {
+            var point = e.GetPosition(_canvas);
+            var cellCoords = _helper.GetCellCoordinatesFromPixel(point.X, point.Y, _cellSize);
 
-        //    if (cell != null)
-        //    {
-        //        CellHovered?.Invoke(this, new CellHoverEventArgs(cell, e));
-        //    }
-        //}
+            if (cellCoords.HasValue)
+            {
+                Cell cell = _mapper.GetMap(
+                    _engine.GetCellValue(cellCoords.Value.row, cellCoords.Value.col),
+                    cellCoords.Value.row,
+                    cellCoords.Value.col
+                );
+
+                if (cell != null)
+                {
+                    CellHovered?.Invoke(this, new CellHoverEventArgs(cell));
+                }
+            }
+        }
     }
 }

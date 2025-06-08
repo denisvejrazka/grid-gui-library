@@ -18,7 +18,7 @@ namespace gLibrary.Rendering.Ava;
 // add UpdateCell(int row, int col)
 public class AvaloniaHexagonRenderer : BaseAvaloniaRenderer
 {
-    public AvaloniaHexagonRenderer(Canvas canvas, GridEngine engine, IMap mapper, SquareHelper helper, int cellSize,
+    public AvaloniaHexagonRenderer(Canvas canvas, GridEngine engine, IMap mapper, HexagonHelper helper, int cellSize,
             EventHandler<CellClickEventArgs>? onClick = null,
             EventHandler<CellHoverEventArgs>? onHover = null)
             : base(canvas, engine, mapper, helper, cellSize, onClick, onHover) { }
