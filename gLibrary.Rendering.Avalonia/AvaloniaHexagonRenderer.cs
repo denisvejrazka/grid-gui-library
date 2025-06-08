@@ -16,32 +16,14 @@ using gLibrary.Core.Events;
 namespace gLibrary.Rendering.Ava;
 
 // add UpdateCell(int row, int col)
-public class AvaloniaHexagonRenderer : Control, IRenderer
+public class AvaloniaHexagonRenderer : BaseAvaloniaRenderer
 {
-    private readonly Canvas _canvas;
-    private HexagonHelper _hexagonHelper;
-    private GridEngine _engine;
-    private int _cellSize;
-    private IMap _mapper;
+    public AvaloniaHexagonRenderer(Canvas canvas, GridEngine engine, IMap mapper, SquareHelper helper, int cellSize,
+            EventHandler<CellClickEventArgs>? onClick = null,
+            EventHandler<CellHoverEventArgs>? onHover = null)
+            : base(canvas, engine, mapper, helper, cellSize, onClick, onHover) { }
 
-    //events
-    public event EventHandler<CellClickEventArgs>? CellClicked;
-    public event EventHandler<CellHoverEventArgs>? CellHovered;
-    private readonly Dictionary<(int row, int col), Panel> _cellVisuals = new();
-
-    public AvaloniaHexagonRenderer(Canvas canvas, EventHandler<CellClickEventArgs>? OnClick = null, EventHandler<CellHoverEventArgs>? OnHover = null)
-    {
-        _canvas = canvas;
-        //events
-        _canvas.PointerPressed += OnPointerPressed;
-        //_canvas.PointerEntered += OnPointerMoved;
-        CellClicked = OnClick;
-        CellHovered = OnHover;
-    }
-
-    public void Clear() => _canvas.Children.Clear();
-
-    public void RenderCell(int row, int col, Cell cell, int cellSize, (double x, double y) position)
+    public override void RenderCell(int row, int col, Cell cell, int cellSize, (double x, double y) position)
     {
         double width = cellSize * 1.5;
         double height = Math.Sqrt(3) * cellSize / 2;
@@ -96,50 +78,4 @@ public class AvaloniaHexagonRenderer : Control, IRenderer
         // Uložení panelu pro možnost pozdější aktualizace
         _cellVisuals[(row, col)] = panel;
     }
-
-    public void UpdateCell(int row, int col, Cell cell, int cellSize, (double x, double y) position)
-    {
-        if (_cellVisuals.TryGetValue((row, col), out var oldPanel))
-        {
-            _canvas.Children.Remove(oldPanel);
-            _cellVisuals.Remove((row, col));
-        }
-
-        RenderCell(row, col, cell, cellSize, position);
-    }
-
-    private void OnPointerPressed(object? sender, PointerPressedEventArgs e)
-    {
-        var point = e.GetPosition(_canvas);
-        var cellCoords = _hexagonHelper.GetCellCoordinatesFromPixel(point.X, point.Y, _cellSize);
-        Cell cell = _mapper.GetMap(
-            _engine.GetCellValue(cellCoords.Value.row, cellCoords.Value.col),
-            cellCoords.Value.row,
-            cellCoords.Value.col
-        );
-
-        if (cell != null)
-        {
-            var properties = e.GetCurrentPoint(_canvas).Properties;
-            MouseButtonType button = properties.IsLeftButtonPressed
-                                     ? MouseButtonType.Left
-                                     : properties.IsRightButtonPressed
-                                        ? MouseButtonType.Right
-                                        : MouseButtonType.Other;
-
-            CellClicked?.Invoke(this, new CellClickEventArgs(cell, button));
-        }
-    }
-
-    //private void OnPointerMoved(object? sender, PointerEventArgs e)
-    //{
-    //    var point = e.GetPosition(_canvas);
-    //    var cellCoords = _hexagonHelper.GetCellCoordinatesFromPixel(point.X, point.Y, _cellSize);
-    //    Cell cell = _mapper.GetMap(_engine.GetCellValue(cellCoords.Value.row, cellCoords.Value.col), cellCoords.Value.row, cellCoords.Value.col);
-
-    //    if (cell != null)
-    //    {
-    //        CellHovered?.Invoke(this, new CellHoverEventArgs(cell, e));
-    //    }
-    //}
 }
