@@ -33,7 +33,7 @@ namespace gLibrary.Rendering.Ava
             _canvas = canvas;
             //events
             _canvas.PointerPressed += OnPointerPressed;
-            _canvas.PointerEntered += OnPointerMoved;
+            _canvas.PointerMoved += OnPointerMoved;
             CellClicked = OnClick;
             CellHovered = OnHover;
             _engine = engine;

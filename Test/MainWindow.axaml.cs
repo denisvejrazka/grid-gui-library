@@ -20,7 +20,7 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         const int cellSize = 50;
-        engine = new GridEngine(5, 5); // správně inicializuj třídní pole
+        engine = new GridEngine(5, 5);
         engine.GenerateGrid();
 
         Mapper mapper = new Mapper();
@@ -34,17 +34,19 @@ public partial class MainWindow : Window
 
     private void OnCellClicked(object? sender, CellClickEventArgs args)
     {
-        if (engine != null && renderer != null && args.Cell != null)
-        {
-            engine.SetCellValue(args.Cell.Row, args.Cell.Column, 1);
-            renderer.UpdateCell(args.Cell.Row, args.Cell.Column);
-        }
+        if (args.Cell == null) return;
+
+        engine.SetCellValue(args.Cell.Row, args.Cell.Column, 1);
+        renderer.UpdateCell(args.Cell.Row, args.Cell.Column);
     }
 
     private void OnCellHovered(object? sender, CellHoverEventArgs args)
-    {
-        Cell cell = args.Cell;
-        cell.Fill = "#DDDDDD"; // Jemné zvýraznění
-        renderer.UpdateCell(cell.Row, cell.Column);
-    }
+{
+    if (engine != null && renderer != null && args.Cell != null)
+        {
+            engine.SetCellValue(args.Cell.Row, args.Cell.Column, 2);
+            renderer.UpdateCell(args.Cell.Row, args.Cell.Column);
+        }
+}
+
 }

@@ -19,7 +19,7 @@ namespace gLibrary.Rendering.Ava;
 // add UpdateCell(int row, int col)
 public class AvaloniaTriangleRenderer : BaseAvaloniaRenderer
 {
-    public AvaloniaTriangleRenderer(Canvas canvas, GridEngine engine, IMap mapper, SquareHelper helper, int cellSize,
+    public AvaloniaTriangleRenderer(Canvas canvas, GridEngine engine, IMap mapper, TriangleHelper helper, int cellSize,
             EventHandler<CellClickEventArgs>? onClick = null,
             EventHandler<CellHoverEventArgs>? onHover = null)
             : base(canvas, engine, mapper, helper, cellSize, onClick, onHover) { }
