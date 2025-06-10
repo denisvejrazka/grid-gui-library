@@ -5,7 +5,6 @@ using gLibrary.Core.Helping;
 using gLibrary.Core.Mapping;
 using System.Threading.Tasks;
 
-// TODO: start game btn or repeat sequence or longer delay
 namespace MemTest.Game
 {
     public class MemTestLogic
@@ -15,20 +14,16 @@ namespace MemTest.Game
         private readonly BaseHelper _helper;
         private readonly IRenderer _renderer;
         private readonly int _cellSize;
-
         private readonly Random _random = new();
+
         private int _score;
         private List<(int Row, int Col)> _sequence = new();
         private List<(int Row, int Col)> _playerInput = new();
         private int _currentStep = 0;
         private bool _isPlayerTurn = false;
+        private bool _gameStarted = false;
 
-        public MemTestLogic(
-            GridEngine engine,
-            IMap mapper,
-            SquareHelper helper,
-            IRenderer renderer,
-            int cellSize)
+        public MemTestLogic(GridEngine engine, IMap mapper, SquareHelper helper, IRenderer renderer, int cellSize)
         {
             _engine = engine;
             _mapper = mapper;
@@ -45,35 +40,45 @@ namespace MemTest.Game
 
             _renderer.Clear();
 
-            SquareRenderer gridRenderer = new SquareRenderer(_renderer, _engine, _mapper, _helper, _cellSize);
-            gridRenderer.RenderGrid();
+            new SquareRenderer(_renderer, _engine, _mapper, _helper, _cellSize)
+                .RenderGrid();
 
             _score = 0;
             _sequence.Clear();
             _playerInput.Clear();
             _currentStep = 0;
             _isPlayerTurn = false;
-
-            StartGame();
+            _gameStarted = false;
         }
 
-        private void StartGame()
+        private async Task StartGameAsync()
         {
-            _sequence.Clear();
             _score = 0;
-            AddRandomCellToSequence();
-            _ = ShowSequenceAsync();
+            _sequence.Clear();
+            _playerInput.Clear();
+            _currentStep = 0;
+            _gameStarted = true;
+
+            await AddRandomCellToSequence();
+            await ShowSequenceAsync();
         }
 
         public async void HandleCellClick(object? sender, CellClickEventArgs args)
         {
-            if (!_isPlayerTurn)
-                return;
-
             int row = args.Cell.Row;
             int col = args.Cell.Column;
 
+            if (!_gameStarted)
+            {
+                await StartGameAsync();
+                return;
+            }
+
+            if (!_isPlayerTurn)
+                return;
+
             _playerInput.Add((row, col));
+
             _engine.SetCellValue(row, col, 1);
             _renderer.RenderCell(row, col, _mapper.GetMap(1, row, col), _cellSize, _helper.GetPosition(row, col, _cellSize));
             await Task.Delay(200);
@@ -82,7 +87,7 @@ namespace MemTest.Game
 
             if (_sequence[_currentStep] != (row, col))
             {
-                EndGame($"Špatné kliknutí! Skóre: {_score}");
+                EndGame();
                 return;
             }
 
@@ -90,8 +95,8 @@ namespace MemTest.Game
             if (_currentStep >= _sequence.Count)
             {
                 _score++;
-                AddRandomCellToSequence();
-                await Task.Delay(500);
+                await AddRandomCellToSequence();
+                await Task.Delay(300);
                 await ShowSequenceAsync();
             }
         }
@@ -99,6 +104,7 @@ namespace MemTest.Game
         private async Task ShowSequenceAsync()
         {
             _isPlayerTurn = false;
+
             foreach (var (row, col) in _sequence)
             {
                 _engine.SetCellValue(row, col, 1);
@@ -122,10 +128,10 @@ namespace MemTest.Game
             _sequence.Add((row, col));
         }
 
-        private void EndGame(string message)
+        private void EndGame()
         {
             _isPlayerTurn = false;
-            Console.WriteLine(message);
+            _gameStarted = false;
         }
     }
 }
