@@ -36,7 +36,7 @@ namespace gLibrary.Core.Engine
 
         public int[,] ExportGrid()
         {
-            var copy = new int[Rows, Columns];
+            int[,] copy = new int[Rows, Columns];
             for (int i = 0; i < Rows; i++)
                 for (int j = 0; j < Columns; j++)
                     copy[i, j] = GetCellValue(i, j);

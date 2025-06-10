@@ -8,7 +8,7 @@ using gLibrary.Core.Mapping;
 
 namespace TicTacToe.Game
 {
-    public class TicTacToeLogic
+    public class TicTacToeLogic: ISaveableGame
     {
         private GridEngine _engine;
         private Player _player1;
@@ -76,47 +76,20 @@ namespace TicTacToe.Game
         // Saving
         public GridState ToGameState()
         {
-            int[,] grid = _engine.ExportGrid();
-            List<List<int>> list = new List<List<int>>();
-
-            for (int i = 0; i < grid.GetLength(0); i++)
-            {
-                var row = new List<int>();
-                for (int j = 0; j < grid.GetLength(1); j++)
-                {
-                    row.Add(grid[i, j]);
-                }
-                list.Add(row);
-            }
-
-            return new GridState { GridValues = list };
+            var state = GridStateConverter.FromMatrix(_engine.ExportGrid());
+            state.MovesMade = _movesMade;
+            state.CurrentPlayer = _currentPlayer.PlayerValue;
+            return state;
         }
 
         public void FromGameState(GridState state)
         {
-            int rows = state.GridValues.Count;
-            int cols = state.GridValues[0].Count;
-            int[,] newGrid = new int[rows, cols];
+            var matrix = GridStateConverter.ToMatrix(state);
+            _engine.SetGrid(matrix);
 
-            for (int i = 0; i < rows; i++)
-                for (int j = 0; j < cols; j++)
-                    newGrid[i, j] = state.GridValues[i][j];
-
-            _engine.SetGrid(newGrid);
-
-            _movesMade = CountMoves(newGrid);
-            _currentPlayer = (_movesMade % 2 == 0) ? _player1 : _player2;
+            _movesMade = state.MovesMade;
+            _currentPlayer = (state.CurrentPlayer == _player1.PlayerValue) ? _player1 : _player2;
             _gameOver = false;
-        }
-
-        private int CountMoves(int[,] grid)
-        {
-            int count = 0;
-            foreach (var value in grid)
-            {
-                if (value != 0) count++;
-            }
-            return count;
         }
     }
 }

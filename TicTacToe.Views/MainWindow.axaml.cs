@@ -31,17 +31,16 @@ namespace TicTacToe.Views
         {
             InitializeComponent();
             _size = 55;
-            _engine = new GridEngine(5, 4);
+            _engine = new GridEngine(3, 3);
             _engine.GenerateGrid();
-            int size = _size;
-            int rows = _engine.Rows;
-            int cols = _engine.Columns;
-            int canvasWidth = cols * size;
-            int canvasHeight = rows * size;
+
+            int canvasWidth = _engine.Columns * _size;
+            int canvasHeight = _engine.Rows * _size;
             TicTacToeBackground.Width = canvasWidth;
             TicTacToeBackground.Height = canvasHeight;
             this.Width = canvasWidth + 80;
             this.Height = canvasHeight + 120;
+
             InitializeGrid();
             InitWebSocket();
         }
@@ -53,8 +52,9 @@ namespace TicTacToe.Views
             _avaloniaSquareRenderer = new AvaloniaSquareRenderer(TicTacToeBackground, _engine, _mapper, _squareHelper, _size, OnClick);
             _squareRenderer = new SquareRenderer(_avaloniaSquareRenderer, _engine, _mapper, _squareHelper, _size);
             _squareRenderer.RenderGrid();
-            _gameStateManager = new GameStateManager();
+
             _TicTacToeLogic = new TicTacToeLogic(_engine);
+            _gameStateManager = new GameStateManager();
         }
 
         private async void InitWebSocket()
@@ -69,32 +69,32 @@ namespace TicTacToe.Views
                 });
             };
 
-            await _webSocketManager.InitializeAsync("ws://....:/ws/"); //server IP add
+            await _webSocketManager.InitializeAsync("ws://10.0.1.15:5006/ws/");
         }
 
         public void SaveGame()
         {
-            GridState state = _TicTacToeLogic.ToGameState();
-            _gameStateManager.SaveGame(state, "gLibrary.Core/Saving/tictactoe_save.json");
+            _gameStateManager.SaveGame(_TicTacToeLogic, "gLibrary.Core/Saving/tictactoe_save.json");
         }
 
         public void LoadGame()
         {
-            GridState state = _gameStateManager.LoadGame("gLibrary.Core/Saving/tictactoe_save.json");
-            if (state != null)
+            if (_gameStateManager.LoadGame(_TicTacToeLogic, "gLibrary.Core/Saving/tictactoe_save.json"))
             {
-                _TicTacToeLogic.FromGameState(state);
                 _squareRenderer.RenderGrid();
             }
         }
+
         public void OnClick(object? sender, CellClickEventArgs args)
         {
             int row = args.Cell.Row;
             int col = args.Cell.Column;
+
             if (_webSocketManager?.IsConnected == true)
             {
                 _webSocketManager.Send(row, col);
             }
+
             _TicTacToeLogic.MakeMove(row, col);
             _squareRenderer.RenderGrid();
         }

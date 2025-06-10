@@ -6,27 +6,26 @@ namespace gLibrary.Core.Saving
     {
         private const string DefaultSavePath = "../saved_game.json";
 
-        public void SaveGame(GridState state, string? filePath = null)
+        public void SaveGame(ISaveableGame game, string? filePath = null)
         {
             string path = filePath ?? DefaultSavePath;
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-
-            var json = JsonSerializer.Serialize(state, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
+            var state = game.ToGameState();
+            var json = JsonSerializer.Serialize(state, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(path, json);
         }
 
-        public GridState? LoadGame(string? filePath = null)
+        public bool LoadGame(ISaveableGame game, string? filePath = null)
         {
             string path = filePath ?? DefaultSavePath;
-
-            if (!File.Exists(path))
-                return null;
+            if (!File.Exists(path)) return false;
 
             var json = File.ReadAllText(path);
-            return JsonSerializer.Deserialize<GridState>(json);
+            var state = JsonSerializer.Deserialize<GridState>(json);
+            if (state == null) return false;
+
+            game.FromGameState(state);
+            return true;
         }
     }
 }
