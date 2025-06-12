@@ -76,7 +76,7 @@ namespace TicTacToe.Game
         // Saving
         public GridState ToGameState()
         {
-            var state = GridStateConverter.FromMatrix(_engine.ExportGrid());
+            GridState state = GridStateConverter.FromMatrix(_engine.ExportGrid());
             state.MovesMade = _movesMade;
             state.CurrentPlayer = _currentPlayer.PlayerValue;
             return state;
@@ -84,7 +84,7 @@ namespace TicTacToe.Game
 
         public void FromGameState(GridState state)
         {
-            var matrix = GridStateConverter.ToMatrix(state);
+            int[,] matrix = GridStateConverter.ToMatrix(state);
             _engine.SetGrid(matrix);
 
             _movesMade = state.MovesMade;
