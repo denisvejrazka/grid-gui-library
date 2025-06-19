@@ -70,7 +70,7 @@ public class AvaloniaTriangleRenderer : BaseAvaloniaRenderer
         {
             Text = cell.Text,
             Foreground = Brushes.Black,
-            FontSize = cellSize * 0.4,
+            FontSize = cellSize * 0.25,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };

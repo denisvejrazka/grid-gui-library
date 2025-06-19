@@ -10,8 +10,8 @@ public class TriMapper: IMap
             return value switch
             {
                 0 => new Cell(row, col, "#FFFFFF", ""),
-                1 => new Cell(row, col, "#deffe7"),
-                99 => new Cell(row, col, "#ff0019"),
+                1 => new Cell(row, col, "#1e00ff"),
+                99 => new Cell(row, col, "#ff1900"),
                 _ => new Cell(row, col, "#FFFFFF", value.ToString())
             };
         }

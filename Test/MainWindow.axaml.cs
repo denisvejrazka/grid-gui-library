@@ -12,7 +12,7 @@ namespace Test;
 public partial class MainWindow : Window
 {
     private readonly GridEngine engine;
-    private readonly AvaloniaSquareRenderer renderer;
+    private readonly AvaloniaTriangleRenderer renderer;
     private readonly BaseRenderer hexRenderer;
 
     public MainWindow()
@@ -23,31 +23,17 @@ public partial class MainWindow : Window
         engine = new GridEngine(4, 4);
         engine.GenerateGrid();
 
-        // Nastavení hodnot podle matice A
-        int[,] values = new int[,]
-        {
-    { 4, 1, 2, 3 },
-    { 1, 3, 1, 2 },
-    { 0, 0, 2, 1 },
-    { 0, 2, 0, 0 }
-        };
-
-        for (int i = 0; i < values.GetLength(0); i++)
-        {
-            for (int j = 0; j < values.GetLength(1); j++)
-            {
-                engine.SetCellValue(i, j, values[i, j]);
-            }
-        }
+        engine.SetCellValue(0, 0, 1);
+        engine.SetCellValue(3, 3, 2);
+        engine.SetCellValue(2, 2, 3);
 
         Mapper mapper = new Mapper();
-        SquareHelper helper = new SquareHelper(engine);
+        TriangleHelper helper = new TriangleHelper(engine);
 
-        renderer = new AvaloniaSquareRenderer(Testik, engine, mapper, helper, cellSize, OnCellClicked /*, OnCellHovered*/);
-        hexRenderer = new SquareRenderer(renderer, engine, mapper, helper, cellSize);
-
+        renderer = new AvaloniaTriangleRenderer(Testik, engine, mapper, helper, cellSize, OnCellClicked /*, OnCellHovered*/);
+        hexRenderer = new TriangleRenderer(renderer, engine, mapper, helper, cellSize);
         hexRenderer.RenderGrid();
-
+        renderer.Clear();
     }
 
     private void OnCellClicked(object? sender, CellClickEventArgs args)

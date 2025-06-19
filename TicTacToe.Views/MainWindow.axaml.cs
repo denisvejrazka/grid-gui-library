@@ -67,7 +67,7 @@ namespace TicTacToe.Views
                 });
             };
 
-            await _webSocketManager.InitializeAsync("ws://:/ws/");
+            await _webSocketManager.InitializeAsync("ws://10.0.1.15:5006/ws/");
         }
 
         public void SaveGame()

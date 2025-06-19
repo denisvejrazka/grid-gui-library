@@ -41,11 +41,17 @@ public class AvaloniaSquareRenderer : BaseAvaloniaRenderer
         if (!string.IsNullOrEmpty(cell.Raster))
         {
             var uri = new Uri(cell.Raster);
+            double imageScale = 0.6; // např. 60 % velikosti buňky
+            double imageSize = cellSize * imageScale;
+
             var bitmapImage = new Image
             {
                 Source = new Bitmap(AssetLoader.Open(uri)),
-                Width = cellSize,
-                Height = cellSize,
+                Width = imageSize,
+                Height = imageSize,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Stretch = Stretch.Uniform,
             };
             panel.Children.Add(bitmapImage);
         }

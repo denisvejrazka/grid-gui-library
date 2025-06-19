@@ -23,7 +23,7 @@ namespace MemTest.Game
         private bool _isPlayerTurn = false;
         private bool _gameStarted = false;
 
-        public MemTestLogic(GridEngine engine, IMap mapper, SquareHelper helper, IRenderer renderer, int cellSize)
+        public MemTestLogic(GridEngine engine, IMap mapper, BaseHelper helper, IRenderer renderer, int cellSize)
         {
             _engine = engine;
             _mapper = mapper;

@@ -18,8 +18,8 @@ namespace MemTest.Views
             GridEngine engine = new GridEngine(3, 3);
             engine.GenerateGrid();
             IMap mapper = new MemMapper();
-            SquareHelper helper = new SquareHelper(engine);
-            AvaloniaSquareRenderer avaloniaRenderer = new AvaloniaSquareRenderer(MemBackground, engine, mapper, helper, CellSize);
+            HexagonHelper helper = new HexagonHelper(engine);
+            AvaloniaHexagonRenderer avaloniaRenderer = new AvaloniaHexagonRenderer(MemBackground, engine, mapper, helper, CellSize);
             _game = new MemTestLogic(engine, mapper, helper, avaloniaRenderer, CellSize);
             avaloniaRenderer.CellClicked += _game.HandleCellClick;
             _game.Initialize();

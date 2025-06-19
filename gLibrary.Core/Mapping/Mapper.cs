@@ -10,10 +10,10 @@ namespace gLibrary.Core.Mapping
             return value switch
             {
                 0 => new Cell(row, col, "#FFFFFF"), 
-                1 => new Cell(row, col, "#f3fc9d"),
-                2 => new Cell(row, col, "#d5f0d8"),
-                3 => new Cell(row, col, "#d5e6f0"),
-                4 => new Cell(row, col, "#f7a6f5"),
+                1 => new Cell(row, col, "#FFFFFF", "a"),
+                2 => new Cell(row, col, "#FFFFFF", "b"),
+                3 => new Cell(row, col, "#FFFFFF", "c"),
+                4 => new Cell(row, col, "#FFFFFF"),
                 _ => new Cell(row, col, "#CCCCCC")
             };
         }
